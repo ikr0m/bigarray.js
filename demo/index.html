@@ -2,9 +2,29 @@
 
 <html>
 <head>
-    <title>Javascript Big Array Demo</title>
-    <script src="../bower_components/localforage/dist/localforage.js"
-            type="text/javascript"></script>
+  <title>Javascript Big Array Demo</title>
+  <script src="../bower_components/lodash/lodash.min.js"
+          type="text/javascript"></script>
+  <script src="../bower_components/localforage/dist/localforage.js"
+          type="text/javascript"></script>
+  <script src="../dist/bigarray.js"></script>
+
+  <script>
+    var array = [];
+    for (var i = 0; i < 200001; i++) {
+      array.push(i);
+    }
+    var bigArray = new BigArray(array, 'number');
+    array = undefined;
+
+    var evenElems = bigArray.filter(function(el) {
+      return el % 2 == 0;
+    });
+    evenElems.then(function(result) {
+      console.log('evenElems: ', result);
+    });
+  </script>
+
 </head>
 <body>
 

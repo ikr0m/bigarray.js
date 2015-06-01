@@ -5,6 +5,7 @@
     "dist/bigarray.js"
   ],
   "dependencies": {
-    "localforage": "1.2.3"
+    "localforage": "1.2.3",
+    "lodash": "~3.9.3"
   }
 }

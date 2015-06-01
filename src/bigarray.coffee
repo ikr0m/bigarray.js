@@ -6,23 +6,38 @@
     License: MIT
 ###
 
-class BigArray
+class @BigArray
+
+  _name = ''
 
   constructor: (array, name, options) ->
-    number = 10 # get from options
-    rowSize = Math.ceil(array.length / number)
-    for i in [1..number]
+    # row is the key/value pair
+    # rowSize is the length of the each array on the rows
+    rowSize = 100 # TODO: get from options
+    _name = name
+    rowCount = Math.ceil(array.length / rowSize)
+
+    for i in [1..rowCount]
       from = (i - 1) * rowSize
       to = from + rowSize
-      localforage.setItem(name + '-#{i}', array[from..to])
+      localforage.setItem(name + "-#{i}", array[from..to])
 
+  filter: (fn)->
+    resultArr = []
+    localforage.iterate((arrayValue, key) ->
+      if key.indexOf(_name + '-') is 0
+        resultArr = resultArr.concat(_.filter(arrayValue, fn))
+      undefined
+    )
+    .then((result) ->
+      resultArr
+    )
 
-
-  filter: ->
-
-  filterBy: ->
+  filterBy: (attrName, attrValue) ->
 
   findByValues: ->
 
   where: ->
+
+  shuffle: ->
 
