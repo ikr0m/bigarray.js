@@ -5,13 +5,13 @@ var gulp = require('gulp'),
 
 gulp.task('coffee-uglify', function () {
     var stream = gulp.src([
-        "src/mime-js.coffee"
+        "src/bigarray.coffee"
     ]);
     stream
         .pipe(coffee())
         .pipe(gulp.dest('./dist/'))
         .pipe(uglify())
-        .pipe(concat({path: 'mime-js.min.js'}))
+        .pipe(concat({path: 'bigarray.min.js'}))
         .pipe(gulp.dest('./dist/'))
 });
 
