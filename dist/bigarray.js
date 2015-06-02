@@ -26,7 +26,11 @@
       });
     };
 
-    _filterBy = function(attrName, attrValue) {};
+    _filterBy = function(attrName, attrValue) {
+      return _filter(function(el) {
+        return el[attrName] === attrValue;
+      });
+    };
 
     _findByValues = function() {};
 
