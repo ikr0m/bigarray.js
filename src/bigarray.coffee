@@ -10,6 +10,31 @@ class @BigArray
 
   _name = ''
 
+
+  _filter = (fn)->
+    resultArr = []
+    localforage.iterate((arrayValue, key) ->
+      if key.indexOf(_name + '-') is 0
+        resultArr = resultArr.concat(_.filter(arrayValue, fn))
+      undefined
+    )
+    .then((result) ->
+      resultArr
+    )
+
+  _filterBy = (attrName, attrValue) ->
+    _filter((el) ->
+      el[attrName] is attrValue
+    )
+
+  _findByValues = ->
+
+  _where = ->
+
+  _shuffle = (size)->
+
+  # --------------------
+
   constructor: (array, name, options) ->
     # row is the key/value pair
     # rowSize is the length of the each array on the rows
@@ -22,22 +47,10 @@ class @BigArray
       to = from + rowSize
       localforage.setItem(name + "-#{i}", array[from..to])
 
-  filter: (fn)->
-    resultArr = []
-    localforage.iterate((arrayValue, key) ->
-      if key.indexOf(_name + '-') is 0
-        resultArr = resultArr.concat(_.filter(arrayValue, fn))
-      undefined
-    )
-    .then((result) ->
-      resultArr
-    )
 
-  filterBy: (attrName, attrValue) ->
-
-  findByValues: ->
-
-  where: ->
-
-  shuffle: ->
+  filter: _filter
+  filterBy: _filterBy
+  findByValues: _findByValues
+  where: _where
+  shuffle: _shuffle
 

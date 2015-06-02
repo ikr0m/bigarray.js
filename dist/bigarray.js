@@ -9,9 +9,30 @@
 
 (function() {
   this.BigArray = (function() {
-    var _name;
+    var _filter, _filterBy, _findByValues, _name, _shuffle, _where;
 
     _name = '';
+
+    _filter = function(fn) {
+      var resultArr;
+      resultArr = [];
+      return localforage.iterate(function(arrayValue, key) {
+        if (key.indexOf(_name + '-') === 0) {
+          resultArr = resultArr.concat(_.filter(arrayValue, fn));
+        }
+        return void 0;
+      }).then(function(result) {
+        return resultArr;
+      });
+    };
+
+    _filterBy = function(attrName, attrValue) {};
+
+    _findByValues = function() {};
+
+    _where = function() {};
+
+    _shuffle = function(size) {};
 
     function BigArray(array, name, options) {
       var from, i, j, ref, rowCount, rowSize, to;
@@ -25,26 +46,15 @@
       }
     }
 
-    BigArray.prototype.filter = function(fn) {
-      var resultArr;
-      resultArr = [];
-      return localforage.iterate(function(value, key, iterationNumber) {
-        if (key.indexOf(_name) === 0) {
-          resultArr = resultArr.concat(_.filter(value, fn));
-        }
-        return void 0;
-      }).then(function(result) {
-        return resultArr;
-      });
-    };
+    BigArray.prototype.filter = _filter;
 
-    BigArray.prototype.filterBy = function() {};
+    BigArray.prototype.filterBy = _filterBy;
 
-    BigArray.prototype.findByValues = function() {};
+    BigArray.prototype.findByValues = _findByValues;
 
-    BigArray.prototype.where = function() {};
+    BigArray.prototype.where = _where;
 
-    BigArray.prototype.shuffle = function() {};
+    BigArray.prototype.shuffle = _shuffle;
 
     return BigArray;
 
