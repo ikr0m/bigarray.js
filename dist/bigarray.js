@@ -32,7 +32,11 @@
       });
     };
 
-    _findByValues = function() {};
+    _findByValues = function(property, values) {
+      return _filter(function(item) {
+        return _.contains(values, item[property]);
+      });
+    };
 
     _where = function() {};
 

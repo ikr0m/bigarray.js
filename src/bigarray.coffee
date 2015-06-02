@@ -27,7 +27,9 @@ class @BigArray
       el[attrName] is attrValue
     )
 
-  _findByValues = ->
+  _findByValues = (property, values) ->
+    _filter (item) ->
+      _.contains(values, item[property])
 
   _where = ->
 
