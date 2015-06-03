@@ -51,6 +51,7 @@ class @BigArray
 
 
   filter: _filter
+
   filterBy: _filterBy
   findByValues: _findByValues
   where: _where
